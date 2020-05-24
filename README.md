@@ -1,22 +1,34 @@
 # -Rclone_OneDrive_Windows
 Windows平台下使用 Rclone 挂载 OneDrive 为本地硬盘
 
-****1、rclone下载地址**
+**1、rclone下载地址**
+
 官网下载：https://rclone.org/downloads/
+
 下载后解压到一个英文路径中。
+
 另外在Windows平台使用rclone还需要另一个依赖工具winfsp，下载地址：http://www.secfs.net/winfsp/download/ ，下载后一路安装即可。
+
 **2、为rclone配置环境变量**
+
 2.1  在电脑桌面右键点击“此电脑”的“属性”选项
+
 2.2  选择“高级系统设置”选项
+
 2.3  在系统变量中找到path，添加刚才解压后的路径
+
 ![markdown](https://gitee.com/wang_wx/image_bed/raw/master/202002/image-20200210093901149.png "markdown")
 
 **3、检查rclone是否配置成功**
+
 按```win+X```，然后按```A ```打开``` powershell``` ，当然也可以去打开 ```cmd``` ，输入```rclone --version```，如果出现下面的输出则安装成功，否则检查上面步骤的环境变量是否配置正确。
+
 ![markdown](https://gitee.com/wang_wx/image_bed/raw/master/202002/20200210102009.png "markdown")
 
 **4、开始配置rclone**
+
 在终端中依次输入以下命令行，请根据我下的步骤进操作。
+
 ```
 D:\AutoRclone>rclone config                    // 第一步在终端输入 rclone config 
 Current remotes:
@@ -171,14 +183,19 @@ e) Edit this remote
 d) Delete this remote
 y/e/d>y                                      //第十二步 输入y
 ```
+
 此时，就会出现刚刚配置好的网盘名称了
+
 ![markdown](https://gitee.com/wang_wx/image_bed/raw/master/202002/image-20200210104149803.png "markdown")
 
 **5、挂载OneDrive为本地硬盘**
+
 此时请使用``` git bash``` 的终端执行以下命令，因为我使用```cmd``` 和 ```powershell``` 都出现关闭终端后挂载程序退出、本地挂载的OneDrive退出的现象。 如果你的windows没有安装git ， 请[自行安装](https://www.baidu.com/s?wd=windows%20%E5%AE%89%E8%A3%85git&ie=utf-8)。。若你使用 ```cmd ```的话 ，```cmd ```是不能退出的，要保持``` cmd``` 不退出本地硬盘才一直挂载着。
 
 在 git bash 中输入以下挂载命令：
+
 ```rclone mount OneDrive_local:/  Q: --cache-dir E:\OneDrive --vfs-cache-mode writes &```
+
 其中：
 
 ```OneDrive_loca``` 替换为你自己前面设置的名称 。
@@ -192,15 +209,19 @@ y/e/d>y                                      //第十二步 输入y
 然后输入 exit 退出终端即可。
 
 ![markdown](https://gitee.com/wang_wx/image_bed/raw/master/202002/20200210124133.png "markdown")
+
 然后就可以看见本地多了一个盘，往里面复制文件就是上传，从里面复制文件到其它盘就是下载。
 
 ![markdown](https://gitee.com/wang_wx/image_bed/raw/master/202002/20200210124455.png "markdown")
 
 **6、设置开机自启动挂载**
+
 创建一个名称为 ```startup_rclone.bat``` 的文件，里面填写上面的挂载命令：
+
 ```rclone mount OneDrive_local:/  Q: --cache-dir E:\OneDrive --vfs-cache-mode writes &```
 
 将这个文件放在```C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup ```中
+
 ![markdown](https://gitee.com/wang_wx/image_bed/raw/master/202002/20200211114237.png "markdown")
 
 重启计算机后就会自动挂设置的云盘了，当然这样做由于调用的是``` cmd``` 因此还是不能关闭运行的 ```cmd```。
