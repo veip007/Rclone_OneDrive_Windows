@@ -6,7 +6,7 @@
 
 下载后解压到一个英文路径中。
 
-另外在Windows平台使用rclone还需要另一个依赖工具winfsp，下载地址：http://www.secfs.net/winfsp/download/ ，下载后一路安装即可。
+另外在Windows平台使用rclone还需要另一个依赖工具winfsp，下载地址：http://www.secfs.net/winfsp/rel/ ，下载后一路安装即可。
 
 **2、为rclone配置环境变量**
 
